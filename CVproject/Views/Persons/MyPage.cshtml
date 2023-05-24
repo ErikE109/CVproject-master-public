@@ -1,0 +1,119 @@
+﻿@model CVproject.Models.CvPersonViewModel
+
+
+<div class ="mainmypage">
+    <div class="mypagepersonal">
+<h1>My Page</h1>
+       
+
+            
+ 
+
+ <div>Number of views on my CV: @ViewBag.NrOfViews</div>
+<div>I am project leader of the following projects: </div>
+<table>
+    @foreach (var item in ViewBag.ProjectsOwner)
+    {
+        <tr>
+            <td><a asp-action="Edit" asp-controller="Projects" asp-route-id="@item.Id">@item.Name</a> </td>
+        </tr>
+    }
+
+</table>
+
+<div>I am part of the following projects: </div>
+<table>
+	@foreach(var item in ViewBag.Projects)
+	{
+
+
+	<tr>
+		<td><a asp-action="details" asp-controller="Projects" asp-route-id="@item.Id">@item.Name</a> </td>
+	</tr>
+	}
+
+</table>
+<div asp-validation-summary="All"></div>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-controller="Persons" asp-action="MyPage" metod="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+
+
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="@Model.person.Id" />
+                    <input type="hidden" asp-for="@Model.person.CvId" />
+                    <input type="hidden" asp-for="@Model.person.CV" />
+
+
+
+            @if (Model.person.Picture != null)
+            {
+                
+
+                //To show picture that is stored in database
+                <img src="data:image/jpeg;base64,@Model.person.Picture" width="120px" height="120px" alt="my profile picture" />
+            }
+            else{
+                        <img src="@Url.Content("~/img/pic.jpg")" width="120px" height="120px" alt="default profile picture" />
+            }
+
+            <div class="form-group">
+                <label asp-for="@Model.person.Name" class="control-label"></label>
+                <input asp-for="@Model.person.Name" class="form-control" />
+                <span asp-validation-for="@Model.person.Name" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="@Model.person.UserName" class="control-label"></label>
+                <input asp-for="@Model.person.UserName" class="form-control" />
+                <span asp-validation-for="@Model.person.UserName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.person.Email" class="control-label"></label>
+                <input asp-for="@Model.person.Email" class="form-control" />
+                <span asp-validation-for="@Model.person.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.person.Github" class="control-label"></label>
+                <input asp-for="@Model.person.Github" class="form-control" />
+                <span asp-validation-for="@Model.person.Github" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.person.IsPrivate" class="control-label"></label>
+                <input type="checkbox" asp-for="@Model.person.IsPrivate" />
+                <span asp-validation-for="@Model.person.IsPrivate" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <label asp-for="@Model.person.ImageFile" class="control-label"></label>
+                <input type="file" asp-for="@Model.person.ImageFile" class="form-control" />
+                 <span asp-validation-for="@Model.person.ImageFile" class="text-danger"></span>
+            </div>
+
+            <a asp-action="ChangePassword">Change password</a>
+            <div class="form-group">
+                <input type="submit" value="Save Changes" class="savebtn savebtnmp" />
+            </div>
+                    </form>
+
+              
+                    <script src="~/js/site.js"></script>
+
+                </div>
+                
+    </div>
+</div>
+
+  </div>
+ 
+
+    <div>
+        @Html.Partial("~/Views/CVs/_myPage.cshtml", Model)
+
+
+    </div>
+
+    
+</div>

@@ -1,0 +1,18 @@
+﻿@model CV
+
+<h5>Competences</h5>
+    <div class="Competencesdiv d-flex flex-sm-wrap mb-2 mt-1">
+        
+        @if (Model.Competences != null)
+        {
+        <ul>
+            @foreach (var competence in Model.Competences)
+            { <li>
+            <div class="comp-cv-div">
+                <label class="lblcompetences">@competence.Name </label>
+                </div>
+                </li>
+            }
+        </ul>
+        }
+        </div>

@@ -1,0 +1,40 @@
+﻿@model CVproject.Models.Experience
+
+@using (Html.BeginForm("AddExperience", "Experiences", FormMethod.Post))
+{
+    <p class="text-danger m-2">@TempData["errorMessageExp"]</p>
+
+    <div class="formgroup">
+        @Html.LabelFor(e => e.Employer)<br />
+        @Html.TextBoxFor(e => e.Employer, new {@required  = "required" })
+        <br />
+    </div>
+
+    <div class="formgroup">
+        @Html.LabelFor(e => e.Title)<br />
+        @Html.TextBoxFor(e => e.Title, new {@required  = "required" })
+        <br />
+    </div>
+
+
+    <div class="formgroup div-year">
+        <label asp-for="StartYear" class="col-md-2 control-label"></label>
+        <div class="col-md-5">
+            @Html.DropDownListFor(e => e.StartYear,
+        new SelectList(Enumerable.Range(1950, 74).Reverse()),
+        "-- Select Start Year ---",
+        new { @class = "form-control", @required  = "required" })
+        </div>        <br />
+
+       <label asp-for="EndYear" class="col-md-2 control-label"></label>
+        <div class="col-md-5">
+            @Html.DropDownListFor(e => e.EndYear,
+        new SelectList(Enumerable.Range(1950, 74).Reverse()),
+        "-- Select End Year ---",
+        new { @class = "form-control", @required  = "required" })
+        </div>        <br />
+
+    </div>
+    <input type="hidden" asp-for=@Model.CvId />
+    <input class="savebtn btnexp" type="submit" value="Add" />
+}

@@ -1,0 +1,35 @@
+﻿@model HomeViewModel
+
+<div id="slideshow" class="carousel carousel-dark slide w-50 d-flex" data-bs-ride="carousel" >
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+            <div class=" startdiv d-block w-100">
+                <img src="@Url.Content("~/img/slide.jpg")" alt="pic" />
+          <h3>Meet Some of Our Users. Click the Link to Visit Their Profile</h3>
+      </div>
+    </div>
+
+
+        @foreach(var cvperson in Model.Users)
+        {
+            @if(cvperson.person.IsActive)
+            {
+            <div class="carousel-item" data-bs-interval="6000">
+                <div class="d-block w-100">
+                    @Html.Partial("_slideshowcv", cvperson)
+                </div>
+              </div>
+            }
+        }
+
+
+  </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#slideshow" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="prev visually-hidden">Previous</span>
+  </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#slideshow" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>

@@ -1,0 +1,32 @@
+﻿
+@model CVproject.ViewModels.LoginViewModel
+
+
+<div asp-validation-summary="All" class="alert-danger"></div>
+<form id="loginForm" method="post" asp-controller="Account" asp-action="LogIn">
+    <div class="form-group">
+        <label for="inputUserName">Username</label>
+        <input asp-for="UserName" type="text" class="form-control" placeholder="Enter Username" id="inputUserName" />
+        <span asp-validation-for="UserName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="inputPassword">Password</label>
+        <input asp-for="Password" type="password" class="form-control" placeholder="Enter Password" id="inputPassword" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <input asp-for="RememberMe" type="checkbox" class="form-check-input">
+        <label class="form-check-label">Remember me</label>
+    </div>
+</form>
+
+<div>
+
+    <button type="submit" form="loginForm" class=" btn loginbtn btn-primary" onclick="!this.form && document.getElementById('loginForm').submit()">Login</button>
+    <button onclick="location.href='@Url.Action("Index","Home")'" class="btn loginbtn btn-primary" data-dismiss="modal">Close</button>
+
+    <p>Have you registered?</p>
+ 
+    <button onclick="location.href='@Url.Action("Registrera","Account")'" class="btn loginbtn btn-primary" data-dismiss="modal">Register</button>
+    
+</div>

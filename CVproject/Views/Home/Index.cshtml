@@ -1,0 +1,46 @@
+﻿@model HomeViewModel
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+<body id="homebody">
+<div class="indexmain d-flex justify-content-center container-fluid">
+<div class="latestproject container-fluid">
+
+            <div class="project d-flex flex-column">
+                <h3>Latest Added Project</h3>
+        @if (ViewBag.LastProject != null && ViewBag.LastProjectOwner != null)
+        {
+
+            <h4>@ViewBag.LastProject.Name</h4>
+            <h6>Project Leader: @ViewBag.LastProjectOwner</h6>
+
+                    <a class="linkclass1" asp-action="details" asp-controller="Projects" asp-route-id="@ViewBag.LastProject.Id">See Project Details</a>
+                }
+                else
+                {
+                    <h6>No Projects Created</h6>
+                }
+            </div>
+        
+        </div>
+</div>
+
+
+
+<div class="slideshowdiv">
+    @Html.Partial("_slideshow", Model)
+</div>
+
+<div>
+    
+
+    
+  
+
+</div>
+<script src="jquery-3.6.1.min.js"></script>
+<script>
+$.get("/CvsController/GetLatestInfo", {})
+</script>
+</body>

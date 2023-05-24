@@ -1,0 +1,17 @@
+﻿@model CV
+<div class="detaildivedu">
+    <div class="title">
+        <h4>Educations</h4>
+    </div>
+    @foreach (var education in Model.Educations)
+    {
+
+        <div class="eduDiv d-flex align-items-center">
+            <div class="cvedudiv">
+                <label class="lbledu">University: @education.University</label> <br />
+                <label class="lbledu">Orientation: @education.Orientation</label> <br />
+                <label class="lbledu">Period: @education.StartYear - @education.EndYear</label> <br />
+            </div>
+            </div>
+    }
+ </div>

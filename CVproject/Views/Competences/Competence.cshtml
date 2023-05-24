@@ -1,0 +1,26 @@
+﻿@model CVproject.Models.Competence
+
+<form class="formgroup">
+    <table class="form-table">
+        <div class="competenceInstructions">
+            <h5>Add Your Competences</h5>
+            <h6>Use the "+" Button to Add More.</h6>
+            <h6>Save When You're Done</h6>
+        </div>
+        <tr valign="top">
+
+            <td id="container_height">
+                <input class="registerTextBox" type="text" name="height[]" placeholder="" />
+            </td>
+            <td>
+                <input class="addbtn" type="button" name="add" id="add" value="+">
+            </td>
+        </tr>
+        <tr>
+            <td>
+            </td>
+        </tr>
+
+    </table>
+    <input class="savebtn" type="submit" value="Add" />
+</form>

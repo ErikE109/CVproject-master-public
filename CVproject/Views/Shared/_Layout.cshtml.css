@@ -1,0 +1,197 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+header {
+   
+}
+* {
+margin: 0 !important;
+}
+body {
+    min-width: 244px;
+    overflow-y: scroll;
+    font-family: 'Montserrat', sans-serif;
+    border: none !important;;
+    
+}
+.footer {
+    background-color: white;
+}
+h1 {
+    margin: 0;
+}
+
+.LogoSearch {
+    color: white;
+    padding-left: 1.5rem;
+    padding-top:20px;
+    margin-top: 0 !important;
+    align-content: center;
+    box-shadow: none;
+    background-color: #1B2631;
+    /*background: linear-gradient(98deg, rgba(27,38,49,1) 0%, rgba(53,69,85,1) 65%, rgba(27,38,49,1) 100%);*/
+}
+form {
+    display: inline-flex;
+    align-content: center;
+    
+}
+.SearhBar {
+    width: 30vw;
+}
+.SearchButton {
+   /* position: absolute;
+    height: 30px;
+    max-height: 30px;*/
+    align-content: center;
+    text-align: center;
+}
+
+.search-container {
+    padding: 0.5rem;
+}
+.msosearch {
+    color:black !important;
+}
+
+button {
+}
+.navbar {
+    background-color: #1B2631;
+    /*border-bottom: 1px solid #1B2631;*/
+}
+a.navbar-brand {
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
+    color: black;
+}
+
+.navbar-nav{
+    padding-left: 0.5rem;
+}
+
+.navContainer {
+    display: flex;
+    justify-content: left;
+    padding-left: 0.5rem;
+    padding: .3em;
+   
+}
+
+.nav-box {
+    align-items: center;
+}
+.navbar-icons {
+    position: absolute;
+    right: 0;
+    top: 1.2em;
+    white-space: nowrap;
+    list-style: none;
+    align-items: center;
+}
+.logedInDiv {
+    position: absolute;
+    right: 10em;
+    top: 1.7em;
+}
+
+.LogoutDiv {
+    padding: 0 1em;
+}
+
+.iconDiv {
+    width: 76px;
+    min-width: 76px;
+    height: 43px;
+    min-height: 43px;
+    justify-content: left;
+    align-items: center;
+}
+
+
+.material-symbols-outlined {
+    color: white;
+    
+}
+
+.btn-login {
+
+}
+
+.loginbtn {
+    padding-left: 1em;
+    padding-right: 1em;
+   
+}
+
+
+button {
+    border: none;
+}
+
+a {
+    color: #0077cc;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: white;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+.border-top {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px;
+    background-color: #1B2631;
+}
+
+@media only screen and (max-width: 575px) {
+    .navContainer {
+        justify-content: left;
+    }
+
+    .nav-box {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+    }
+
+    #a {
+        order: 2;
+    }
+
+    #b {
+        order: 1;
+    }
+}
+@media only screen and (max-width: 765px) {
+     .SearchButton {
+         max-height: 27px;
+     }
+}
+

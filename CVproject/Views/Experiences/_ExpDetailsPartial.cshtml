@@ -1,0 +1,46 @@
+﻿@model CV
+<div>
+    
+    <h4>My Experiences</h4>
+    <div class="detaildiv">
+    @foreach(var exp in Model.Experiences)
+    {
+            <div class="expDiv d-flex align-items-center">
+        <div class="">
+            <label class="lbledu">Employer: @exp.Employer</label> <br />
+            <label class="lbledu">Title: @exp.Title</label> <br />
+            <label class="lbledu">Period: @exp.StartYear - @exp.EndYear</label> <br />
+        </div>
+
+                <div class="editdelete d-flex">
+                    <button type="button" class="btndelete edit-exp" data-toggle="modal"
+                        data-target="#editexpmodal@(exp.Id)" id="btnedit" data-id="@exp.Id">
+                        <span class="material-symbols-outlined msodelete">Edit</span>
+                    </button>
+
+                    <form asp-controller="Experiences" asp-action="Delete" asp-route-id=@exp.Id method="post">
+                        <button class="btnDelete" type="submit" onclick="return confirm('Are You Sure You Want To Delete This?')">
+                            <span class="material-symbols-outlined msodelete">delete</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="modal" id="editexpmodal@(exp.Id)" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">@exp.Id</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        @Html.Partial("~/Views/Experiences/_ExpEdit.cshtml", exp)
+                    </div>
+                </div>
+            </div>
+        
+    }
+        
+    </div>
+
+</div>

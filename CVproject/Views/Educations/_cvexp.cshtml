@@ -1,0 +1,17 @@
+﻿@model CvViewModel
+<div>
+    <h4>My Experiences</h4>
+    <div class="detaildiv">
+        @foreach (var exp in Model.Experiences)
+        {
+            <div class="expDiv d-flex align-items-center">
+                <div class="">
+                    <label class="lbledu">Employer: @exp.Employer</label> <br />
+                    <label class="lbledu">Title: @exp.Title</label> <br />
+                    <label class="lbledu">Period: @exp.StartYear - @exp.EndYear</label> <br />
+                </div>
+                </div>
+        }
+        
+        </div>
+ </div>

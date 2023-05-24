@@ -1,0 +1,70 @@
+﻿@model CvPersonViewModel
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans&family=Indie+Flower&family=Montserrat:wght@300;400&family=Roboto:wght@100;300&display=swap" rel="stylesheet">
+<div class="detaildivslide">
+
+ 
+        <div class="slideDiv d-flex align-items-center ">
+            <div class="picdiv d-flex align-items-center justify-content-between container-fluid">
+            <div class="cvpic">
+                @if (Model.person.Picture != null)
+                {
+               
+                    <img src="data:image/jpeg;base64,@Model.person.Picture" width="120px" height="120px" alt="my profile picture" />
+                }
+                else
+                {
+                    <img src="@Url.Content("~/img/pic.jpg")" width="80px" height="80px" alt="default profile picture" />
+                }
+
+            </div> <div class="namediv container-fluid"><h3>@Model.person.Name</h3></div>
+                
+                
+            </div>
+            <div class="cvslidediv d-flex flex-column">
+            <div class="cvslidediv1 d-flex flex-column">
+            <h5>Latest Education</h5>
+            @if( Model.education != null)
+            {
+            <label asp-for="education.University" class="control-label lblslide">University: @Model.education.University </label>
+                <label class="control-label lblslide">Orientation: @Model.education.Orientation </label>
+                <label class=" lblslide lbledu">Period: @Model.education.StartYear - @Model.education.EndYear</label> <br />
+                }
+            </div>
+            <div class="cvslidediv1 d-flex flex-column">
+            <h5>Latest Experience</h5>
+            @if (Model.experience != null)
+            {
+
+                    <label asp-for="experience.Employer" class=" control-label lblslide">Employer: @Model.experience.Employer </label>
+                    <label asp-for="experience.Title" class=" control-label lblslide">Title: @Model.experience.Employer </label>
+                    <label class=" lblslide lbledu">Period: @Model.experience.StartYear - @Model.experience.EndYear</label> <br />
+                
+            }</div>
+
+            <div class="cvslidediv2 d-flex flex-column">
+                <h5>Latest Added Competences</h5>
+                @if (Model.competences != null)
+
+                {
+                    <ul>
+                    @foreach (var comp in Model.competences)
+                    {
+                            <li>
+                                <label asp-for="@comp.Name" class=" control-label lblslide"> @comp.Name</label></li>
+                    }
+                    </ul>
+
+
+
+                }
+            </div>
+            </div>
+        <div class=" linkdiv carousel-caption d-flex container-fluid">
+         
+            @Html.ActionLink("Visit Profile", "Index", "CVs", new {id = Model.person.Id})
+        </div>
+            </div>
+
+ </div>

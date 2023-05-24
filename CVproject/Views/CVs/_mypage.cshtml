@@ -1,0 +1,129 @@
+﻿@model CVproject.Models.CvPersonViewModel
+@{
+    ViewData["Title"] = "LogIn";
+}
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+
+
+
+<div class="Registercontainer">
+    <div class="div">
+        <div class="col-sm-7">
+            <div class="panel-group drop-accordion" id="accordion" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+
+
+
+
+
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading" id="headingTwo">
+                            <h4 class="panel-title">
+                                <a class="collapse-controle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                                    Educations
+                                    <span class="expand-icon-wrap"><i class="fa expand-icon"></i></span>
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo" aria-expanded="false" style="height: 0px;">
+                            <div class="panel-body">
+                                @Html.Partial("~/Views/Educations/_EducationsPartial.cshtml", new Education(Model.cv.Id))
+
+                            </div>
+                        </div>
+
+
+
+
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingThree">
+                                <h4 class="panel-title">
+                                    <a class="collapsed collapse-controle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                                        Experience
+                                        <span class="expand-icon-wrap"><i class="fa expand-icon"></i></span>
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree" aria-expanded="true">
+                                <div class="panel-body">
+                                    @Html.Partial("~/Views/Experiences/_ExperiencePartial.cshtml", new Experience(Model.cv.Id))
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingFour">
+                                <h4 class="panel-title">
+                                    <a class="collapsed collapse-controle" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+                                        Competence
+                                        <span class="expand-icon-wrap"><i class="fa expand-icon"></i></span>
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour" aria-expanded="true">
+                                <div class="panel-body">
+
+
+                  
+                                    @Html.Partial("~/Views/Competences/_CompetencePartial.cshtml",new Competence(Model.cv.Id))
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="DetailsDiv">
+            @Html.Partial("~/Views/Educations/_EducationDetailsPartial.cshtml", Model.cv)
+
+            @Html.Partial("~/Views/Experiences/_ExpDetailsPartial.cshtml", Model.cv)
+
+
+            @Html.Partial("~/Views/Competences/_CompDetailsPartial.cshtml", Model.cv)
+
+
+        </div>
+
+        
+    </div>
+    <button onclick="location.href='@Url.Action("Diactivate","Account")'" class="btn btn-danger float-end mt-2"><span>Diactivate your account</span></button>
+    @if (TempData != null)
+    {
+        <p>@TempData["message"]</p>
+    }
+</div>
+
+
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script>
+
+
+    $(function () {
+        $('.panel-heading').click(function (e) {
+            $('.panel-heading').removeClass('tab-collapsed');
+            var collapsCrnt = $(this).find('.collapse-controle').attr('aria-expanded');
+            if (collapsCrnt != 'true') {
+                $(this).addClass('tab-collapsed');
+            }
+        });
+    })
+
+    $(document).ready(function () {
+        $('a').click(function () {
+            localStorage.setItem('collapseItem', $(this).attr('href'));
+        });
+
+        var collapseItem = localStorage.getItem('collapseItem');
+        if (collapseItem) {
+            $(collapseItem).collapse('show')
+        }
+    })
+</script>

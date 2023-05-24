@@ -1,0 +1,38 @@
+﻿@model CVproject.ViewModels.LoginRegisterViewModel
+
+
+
+<form id="loginRegisterForm" method="post" asp-controller="Account" asp-action="Registrera">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group">
+        <label for="inputName">Name</label>
+        <input asp-for="Name" type="text" class="form-control" placeholder="Enter Name" id="inputName" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="inputEmail">Email</label>
+        <input asp-for="Email" type="email" class="form-control" placeholder="Enter Email" id="inputEmail" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="inputUserName">Username</label>
+        <input asp-for="UserName" type="text" class="form-control" placeholder="Enter Username" id="inputUserName" />
+        <span asp-validation-for="UserName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="inputPassword">Password</label>
+        <input asp-for="Password" type="password" class="form-control" placeholder="Enter Password" id="inputPassword" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="inputConfirmPassword">Confirm password</label>
+        <input asp-for="ConfirmPassword" type="password" placeholder="Enter Password" class="form-control" id="inputConfirmPassword">
+        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+    </div>
+</form>
+
+<div>
+
+    <button type="submit" form="loginRegisterForm" class=" btn loginbtn btn-primary" onclick="!this.form && document.getElementById('loginRegisterForm').submit()">Register</button>
+    <button onclick="location.href='@Url.Action("Index","Home")'" class="btn loginbtn btn-primary" data-dismiss="modal">Close</button>
+</div>

@@ -1,0 +1,18 @@
+﻿@model CVproject.Models.Competence
+
+        @using (Html.BeginForm("AddCompetence", "Competences", FormMethod.Post))
+        {
+
+
+    <div class="formgroup">
+        @Html.LabelFor(e => e.Name)<br />
+        @Html.TextBoxFor(e => e.Name, new {@required  = "required" })
+        <br />
+    </div>
+    <input type="hidden" asp-for=@Model.CvId />
+    <input type="hidden" asp-for=@Model.Cv />
+
+
+    <input class="savebtn" type="submit" value="Add" />
+        }
+

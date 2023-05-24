@@ -1,0 +1,58 @@
+﻿@model PersonSearchViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Persons</h1>
+<h6>Advanced Search</h6>
+<form asp-action = "Index" asp-controller="Persons" method="get">
+     <input class="SearhBar" align="center" type="text" placeholder="Name.." name="searchString1">
+    <input class="SearhBar" align="center" type="text" placeholder="Competence.." name="searchString2">
+    <button class="Button" align="center" name="SearchButton" type="submit">
+        Search
+    </button>
+
+</form>
+
+<div>
+    <h3>
+        Search:  @foreach (var item in ViewBag.Searches) { @item } </ h3 >
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <label>Name</label>
+            </th>
+            <th>
+                <label>Email</label>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.persons) {
+            @if (item.IsActive)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @if (!item.IsPrivate || User.Identity.IsAuthenticated)
+                        {
+                            <a asp-controller ="Cvs" asp-action="Index" asp-route-id="@item.Id">Show CV</a> <span>|</span>
+                        }
+
+                <a asp-controller="Messages" asp-action="Create" asp-route-id="@item.Id">Send message</a>
+            </td>
+        </tr>
+        }
+}
+    </tbody>
+</table>

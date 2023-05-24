@@ -1,0 +1,52 @@
+﻿@model CV
+<div class="detaildiv">
+    <h4>My Educations</h4>
+    @foreach (var education in Model.Educations)
+    {
+
+        <div class="eduDiv d-flex align-items-center">
+            <div class="">
+                <label class="lbledu">University: @education.University</label> <br />
+                <label class="lbledu">Orientation: @education.Orientation</label> <br />
+                <label class="lbledu">Period: @education.StartYear - @education.EndYear</label> <br />
+            </div>
+            <div class="editdelete d-flex">
+                <input type="hidden" asp-for=@education.Id />
+
+                <form asp-controller="Educations" asp-action="Edit" asp-route-id=@education.Id method="get">
+                    <button type="button" class="btndelete edit-education" data-toggle="modal" data-target="#editmodal@(education.Id)" id="btnedit" data-id="@education.Id">
+                        <span class="material-symbols-outlined msodelete">Edit</span>
+                    </button>
+                </form>
+
+                <form asp-controller="Educations" asp-action="Delete" asp-route-id=@education.Id method="post">
+                    <button class="btnDelete" type="submit" onclick="return confirm('Are You Sure You Want To Delete This?')"> <span class="material-symbols-outlined msodelete">delete</span> </button>
+                </form>
+
+            </div>
+        </div>
+
+
+        <div class="modal" id="editmodal@(education.Id)" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Edit Education</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    @Html.Partial("~/Views/Educations/_EducationEdit.cshtml", education)
+
+
+
+                </div>
+            </div>
+        </div>
+    }
+
+</div>
+
+
+
+

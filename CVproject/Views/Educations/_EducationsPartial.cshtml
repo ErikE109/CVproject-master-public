@@ -1,0 +1,49 @@
+﻿@model CVproject.Models.Education
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+        
+
+        @using (Html.BeginForm("AddEducation", "Educations", FormMethod.Post))
+        {
+           
+            <p class="text-danger m-2">@TempData["errorMessage"]</p>
+
+            <input type="hidden" asp-for="Id" />
+            <div class="formgroup years" >
+            @Html.LabelFor(e => e.University)<br />
+        @Html.TextBoxFor(e => e.University, new { @required  = "required" })
+                <br />
+            </div>
+           
+           <div class="formgroup div-year">
+
+        <label asp-for="StartYear" class="col-md-2 control-label">Start Year</label>
+        <div class="col-md-5">
+            @Html.DropDownListFor(e => e.StartYear,
+        new SelectList(Enumerable.Range(1950, 74).Reverse()),
+        "-- Select Start Year ---",
+        new { @class = "form-control", @required  = "required" })
+        </div>
+     
+
+        <label asp-for="EndYear" class="col-md-2 control-label">End Year</label>
+        <div class="col-md-5">
+            @Html.DropDownListFor(e => e.EndYear,
+        new SelectList(Enumerable.Range(1950, 78).Reverse()),
+        "-- Select End Year ---",
+        new { @class = "form-control", @required  = "required" })
+        </div>
+       
+
+            </div>
+
+            <div class="formgroup">
+        @Html.LabelFor(e => e.Orientation)<br />
+        @Html.TextBoxFor(e => e.Orientation, new {@required  = "required" })<br />
+    </div>
+  
+    <input type="hidden" asp-for=@Model.CvId />
+
+       
+        <input class="savebtn btnedu" type="submit" value="Add" />  
+        }

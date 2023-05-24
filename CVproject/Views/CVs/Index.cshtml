@@ -1,0 +1,109 @@
+﻿@model CvPersonViewModel
+
+
+
+<body onload="getUserInput()">
+
+@if (ViewBag.PersonWithSimilarCV != null)
+{
+    <div class="simlarpersonDiv">
+        <a asp-controller="Cvs" asp-action="Index" asp-route-id="@ViewBag.PersonWithSimilarCV.Id">@ViewBag.PersonWithSimilarCV.Name has also studied @ViewBag.Orientation!</a>
+        <a></a>
+    </div>
+
+}
+else
+{
+    <div>
+        No other profile with similar eductional orientation
+    </div>
+}
+<button onclick="location.href='@Url.Action("CreateXml","Cvs", new { id=Model.person.Id })'" class="btn btn-dark float-end mt-2"><span>Download as xml</span></button>
+    @if (TempData != null)
+    {
+        <div>
+        <p class="float-end">@TempData["message"]</p>
+        </div>
+    }
+<div class="CvDiv d-flex container-fluid">
+
+    <div class="cvdiv1 d-flex container-fluid  justify-content-between">
+        <div class="profilepicdivmain d-flex flex-column">
+            <div class="profilepicdiv d-flex justify-content-center align-items-center flex-column">
+                @if (Model.person.Picture != null)
+                {
+                    //To show picture that is stored in database
+                    <img src="data:image/jpeg;base64,@Model.person.Picture" width="120px" height="120px" alt="my profile picture" />
+                }
+                else
+                {
+                    <img src="@Url.Content("~/img/pic.jpg")" width="120px" height="120px" alt="default profile picture" />
+                }
+
+
+                <h3>@Model.person.Name</h3>
+                <h6>.@Model.person.UserName</h6>
+                <div class="sendmessagediv">
+                    <button onclick="location.href='@Url.Action("Create","Messages", new { id=Model.person.Id })'" class="btn messagebtn"><span class="material-symbols-outlined messageicon">mail</span>   <span>Send Message</span></button>
+                </div>
+            </div>
+            <div class="div1">
+                <div class="projectdiv">
+                    <h5>Current Projects</h5>
+                    Project Leader: <br />
+                    @foreach (var owner in ViewBag.ProjectsOwner)
+                    {
+                        <strong><a class="linkclass" asp-action="details" asp-controller="Projects" asp-route-id="@owner.Id">@owner.Name</a></strong> <br />
+                    }
+                    <br />
+                    Member:<br />
+                    @foreach (var projects in ViewBag.Projects)
+                    {
+                        <a class="linkclass" asp-action="details" asp-controller="Projects" asp-route-id="@projects.Id">@projects.Name</a>
+
+                        <br />
+
+
+                    }
+                </div>
+                <div class="cvcomp">
+                    @Html.Partial("~/Views/Competences/_cvcomp.cshtml", Model.cv)
+                </div>
+                <div class="cvdiv2 d-flex justify-content-between ">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="div-cv d-flex">
+        <div class="cv-spec-div container-fluid">
+            <div class="cvedu">
+                @Html.Partial("~/Views/Educations/_cveducation.cshtml", Model.cv)
+            </div>
+            @Html.Partial("~/Views/Experiences/_cvexp.cshtml", Model.cv)
+        </div>
+
+    </div>
+
+</div>
+    @if(Model.person.Github != null)
+    {
+        
+    
+    <div class="container github ">
+
+    <div class="form-group">
+    <label>This user is connected to Github user: @Model.person.Github</label><br/>
+    <label>Repositories:</label>
+        <input type="hidden" class="form-control mb-2" placeholder="" id="inputGithub" value=@Model.person.Github />
+    </div>
+    
+
+    <div id="name-github"></div>
+    <script src="~/js/site.js"></script>
+</div>
+}
+
+         
+  
+
+</body>
